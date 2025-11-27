@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array & Object Exercises</title>
+    <script src="index.js" defer></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2em; }
+        .section { margin-bottom: 2em; }
+        pre { background: #f4f4f4; padding: 1em; }
+        button { margin: 0.5em 0; }
+    </style>
+</head>
+<body>
+    <h1>Array & Object Exercises</h1>
+
+    <div class="section">
+        <h2>Array Results</h2>
+        <button onclick="showArrayResults()">Show Array Results</button>
+        <pre id="arrayResults"></pre>
+    </div>
+
+    <div class="section">
+        <h2>Object Results</h2>
+        <button onclick="showObjectResults()">Show Object Results</button>
+        <pre id="objectResults"></pre>
+    </div>
+
+    <script>
+    // Display array results from index.js
+    function showArrayResults() {
+        // Re-run the array exercises and collect output
+        let output = [];
+        let people = ["Greg", "Mary", "Devon", "James"];
+        for (let i = 0; i < people.length; i++) output.push(people[i]);
+        people.forEach(person => output.push(person));
+        if (people[0] === "Greg") people.shift();
+        if (people[people.length - 1] === "James") people.pop();
+        people.unshift("Matt");
+        people.push("Gerry");
+        for (let i = 0; i < people.length; i++) {
+            output.push(people[i]);
+            if (people[i] === "Mary") break;
+        }
+        let copy = people.filter(person => person !== "Mary" && person !== "Matt");
+        output.push("Copy (tanpa Mary & Matt): " + JSON.stringify(copy));
+        people = ["Greg", "Mary", "Devon", "James"];
+        people.splice(2, 1, "Elizabeth", "Artie");
+        people.unshift("Matt");
+        people.push("Gerry");
+        output.push("People setelah splice/unshift/push: " + JSON.stringify(people));
+        let withBob = people.concat("Bob");
+        output.push("withBob: " + JSON.stringify(withBob));
+        document.getElementById("arrayResults").textContent = output.join('\n');
+    }
+
+    // Display object results from index.js
+    function showObjectResults() {
+        let output = [];
+        let programming = {
+            languages: ["JavaScript", "Python", "Ruby"],
+            isChallenging: true,
+            isRewarding: true,
+            difficulty: 8,
+            jokes: "http://stackoverflow.com/questions/234075/whats-the-best-way-to-iterate-over-an-array-in-javascript"
+        };
+        for (let key in programming) {
+            output.push(key + ": " + programming[key]);
+        }
+        programming.languages.push("Go");
+        delete programming.jokes;
+        output.push("Setelah modifikasi: " + JSON.stringify(programming));
+        document.getElementById("objectResults").textContent = output.join('\n');
+    }
+    </script>
+</body>
+</html>

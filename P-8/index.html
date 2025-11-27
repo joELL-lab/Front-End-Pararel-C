@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow Functions & Destructuring</title>
+    <script src="index.js" defer></script>
+</head>
+<body>
+    <h1>Arrow Functions & Destructuring Exercises</h1>
+
+    <div class="section">
+        <h2>Arrow Function Results</h2>
+        <button onclick="showArrowFunctionResults()">Show Arrow Function Results</button>
+        <pre id="arrowFunctionResults"></pre>
+    </div>
+
+    <div class="section">
+        <h2>Destructuring Results</h2>
+        <button onclick="showDestructuringResults()">Show Destructuring Results</button>
+        <pre id="destructuringResults"></pre>
+    </div>
+
+    <script>
+    // Display arrow function results from index.js
+    function showArrowFunctionResults() {
+        let output = [];
+        const names = ["Alice", "Bob", "Charlie"];
+        const lengths = names.map(name => name.length);
+        output.push("Lengths of names: " + JSON.stringify(lengths));
+
+        const square = x => x * x;
+        output.push("Square of 5: " + square(5));
+
+        const add = (a, b) => a + b;
+        output.push("Add 3 and 4: " + add(3, 4));
+
+        const randomNumber = () => Math.random();
+        output.push("Random number: " + randomNumber());
+
+        document.getElementById("arrowFunctionResults").textContent = output.join('\n');
+    }
+
+    // Display destructuring results from index.js
+    function showDestructuringResults() {
+        let output = [];
+        
+        const person = { name: "John", age: 30, city: "New York" };
+        const { name, age } = person;
+        output.push(`Name: ${name}, Age: ${age}`);
+
+        const numbers = [1, 2, 3, 4, 5];
+        const [first, second] = numbers;
+        output.push(`First: ${first}, Second: ${second}`);
+
+        const nestedArray = [1, [2, 3], 4];
+        const [one, [two, three]] = nestedArray;
+        output.push(`One: ${one}, Two: ${two}, Three: ${three}`);
+
+        document.getElementById("destructuringResults").textContent = output.join('\n');
+    }
+    </script>
+</body>
+</html>
